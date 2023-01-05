@@ -104,23 +104,7 @@ if __name__ == '__main__':
     
     while True:
         message = {}
-        if loopCount % 60 == 0:
 
-            loopCount = 0
-
-            message["rVibration_Temp"] = float(90)
-            message["rVibration_Z_RMS_Velocity"] = float(130)
-            message["rVibration_X_RMS_Velocity"] = float(10)
-            message["wRMSCurrent"] = float(111)
-            message["wCurrentLoad"] = float(111)
-            message["wEncoderVelocity"] = float(34)
-        else:
-            message["rVibration_Temp"] = round(random.uniform(40, 50),2)
-            message["rVibration_Z_RMS_Velocity"] = round(random.uniform(80, 100),2)
-            message["rVibration_X_RMS_Velocity"] = round(random.uniform(80, 100),2)
-            message["wRMSCurrent"] = round(random.uniform(40, 50),2)
-            message["wCurrentLoad"] = round(random.uniform(40, 50),2)
-            message["wEncoderVelocity"] = round(random.uniform(20, 30),2)
         for p in config_data['sensors']:
             name = p['name']
             value = float(round(ds.generate_data(p), 2))
