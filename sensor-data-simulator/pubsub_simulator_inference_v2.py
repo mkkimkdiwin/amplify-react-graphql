@@ -121,6 +121,10 @@ if __name__ == '__main__':
             message["wRMSCurrent"] = round(random.uniform(40, 50),2)
             message["wCurrentLoad"] = round(random.uniform(40, 50),2)
             message["wEncoderVelocity"] = round(random.uniform(20, 30),2)
+        for p in config_data['sensors']:
+            name = p['name']
+            value = float(round(ds.generate_data(p), 2))
+            message[name] = value
 
         config_label = config_data['label']
         message[config_label['name']] = float(ds.generate_label(config_label, message))

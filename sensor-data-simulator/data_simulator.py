@@ -7,7 +7,7 @@ def generate_data(config):
     # data = {}
     # data['name'] = config['name']
     current_time = datetime.utcnow()
-    print(current_time)
+    #print(current_time)
 
     today = datetime.today().strftime('%Y-%m-%d')
     tomorrow = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
@@ -20,12 +20,12 @@ def generate_data(config):
         time_elasped = int((current_time - prev_cp).total_seconds())
         # print(time_elasped)
         if time_elasped > 0:
-            print('found previous ckeck point, timestamp:' + str(prev_cp))
+            #print('found previous ckeck point, timestamp:' + str(prev_cp))
             next_cp = datetime.strptime(tomorrow + ' ' + checkpoints[0]['timestamp'], '%Y-%m-%d %H:%M:%S.%f') if i == (len(checkpoints)-1) else datetime.strptime(today + ' ' + checkpoints[i+1]['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
-            print('next ckeck point timestamp:' + str(next_cp))
+            #print('next ckeck point timestamp:' + str(next_cp))
 
             next_value = checkpoints[0]['value'] if i == (len(checkpoints)-1) else checkpoints[i+1]['value']
-            print('time_elasped:' + str(time_elasped))
+            #print('time_elasped:' + str(time_elasped))
 
             generated_data = checkpoints[i]['value'] + ((next_value - checkpoints[i]['value'])/int((next_cp - prev_cp).total_seconds())) * time_elasped * round(random.uniform(0.9, 1),2) + round(random.uniform(0, 3),2)
             return generated_data
